@@ -20,11 +20,23 @@ services:
     environment:
       - PORT=${PORT}
     ports:
-      - '3000:3000'
+      - '3001:3000'
     depends_on:
       - db
     volumes:
       - ./src:/app/src
+
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: "./client"
+    depends_on:
+      - app # todo: might not be necessary
+    volumes:
+      - /client/node_modules
+      - ./client:/app
+    ports:
+      - "3000:3000"
 
   pgadmin:
     image: dpage/pgadmin4
