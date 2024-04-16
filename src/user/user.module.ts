@@ -4,10 +4,9 @@ import { UserController } from './user.controller';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import UserEntity from './entities/user.entity';
 import { FirebaseAdmin } from 'src/firebase-setup';
-import PostEntity from './entities/post.entity';
 
 @Module({
-  imports: [MikroOrmModule.forFeature([UserEntity, PostEntity])],
+  imports: [MikroOrmModule.forFeature([UserEntity])],
   controllers: [UserController],
   providers: [UserService, FirebaseAdmin],
 })
